@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una Carta para Vos</title>
+  <!-- Fuentes bonitas desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
+  <style>
+    body {
+      background-color: #ffe6eb;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .instruccion {
+      color: #d81b60;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      animation: flotar 2s infinite ease-in-out;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* --- ESTRUCTURA DEL SOBRE --- */
+    .contenedor-sobre {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .sobre {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background-color: #f06292;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Solapa triangular de arriba que se abre */
+    .solapa-superior {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-top: 110px solid #ec407a;
+      transform-origin: top;
+      transition: transform 0.6s ease-in-out, z-index 0.6s;
+      z-index: 3;
+    }
+
+    /* Parte de enfrente del sobre */
+    .bolsillo-inferior {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 150px solid #f48fb1;
+      border-right: 150px solid #f48fb1;
+      border-bottom: 100px solid #f06292;
+      border-radius: 0 0 8px 8px;
+      z-index: 2;
+    }
+
+    /* --- LA CARTA INTERNA --- */
+    .carta {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      width: 270px;
+      height: 170px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.6s ease-in-out 0.2s;
+      z-index: 1;
+    }
+
+    .carta h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      color: #ad1457;
+      margin: 5px 0 0 0;
+    }
+
+    .mensaje-principal {
+      font-family: 'Caveat', cursive;
+      font-size: 2.3rem;
+      color: #e91e63;
+      font-weight: bold;
+      margin: 10px 0 5px 0;
+    }
+
+    .submensaje {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+    }
+
+    /* --- ANIMACIÓN CUANDO TOCAS EL SOBRE --- */
+    .sobre.abierto .solapa-superior {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+
+    .sobre.abierto .carta {
+      transform: translateY(-130px);
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="instruccion">✨ Tocá el sobre para abrirlo ✨</p>
+
+  <div class="contenedor-sobre" onclick="abrirCarta()">
+    <div class="sobre">
+      <div class="solapa-superior"></div>
+      
+      <div class="carta">
+        <h2>Para vos ♥</h2>
+        <p class="mensaje-principal">¡Pipi cucú! 🤩✨</p>
+        <p class="submensaje">Espero que tengas un día hermoso.</p>
+      </div>
+      
+      <div class="bolsillo-inferior"></div>
+    </div>
+  </div>
+
+  <script>
+    function abrirCarta() {
+      const sobre = document.querySelector('.sobre');
+      sobre.classList.toggle('abierto');
+    }
+  </script>
+
+</body>
+</html>
